@@ -4,13 +4,14 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-
-const REACT_APP_FIREBASE_API_KEY="AIzaSyCQDrm9QA0koQnqE_mdb0kYzZRgG1o4HCE",
-  REACT_APP_FIREBASE_AUTH_DOMAIN="my-application-bd25c.firebaseapp.com",
-  REACT_APP_FIREBASE_PROJECT_ID="my-application-bd25c",
-  REACT_APP_FIREBASE_STORAGE_BUCKET="my-application-bd25c.appspot.com",
-  REACT_APP_FIREBASE_MESSAGING_SENDER_ID=1098051849887,
-  REACT_APP_FIREBASE_MESSAGING_APP_ID="1:1098051849887:web:ae2bb49ea400513f0f1caa"
+import {
+  REACT_APP_FIREBASE_API_KEY,
+  REACT_APP_FIREBASE_AUTH_DOMAIN,
+  REACT_APP_FIREBASE_PROJECT_ID,
+  REACT_APP_FIREBASE_STORAGE_BUCKET,
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  REACT_APP_FIREBASE_MESSAGING_APP_ID
+} from './credentials'
 
 const firebaseConfig = {
   apiKey: REACT_APP_FIREBASE_API_KEY,
