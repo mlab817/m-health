@@ -9,12 +9,12 @@
         <q-card-section class="q-mt-lg">
           <div class="text-h6 q-mb-xl">Administrator Login</div>
 
-          <q-form>
-            <q-input dense outlined class="q-mb-md" label="Email Address" />
+          <q-form @submit="handleLogin">
+            <q-input dense outlined class="q-mb-md" label="Email Address" v-model="email"/>
 
-            <q-input dense outlined class="q-mb-md" label="Password" type="password" />
+            <q-input dense outlined class="q-mb-md" label="Password" type="password" v-model="password"/>
 
-            <q-btn label="Login" class="full-width" color="primary" />
+            <q-btn label="Login" class="full-width" color="primary" type="submit" />
           </q-form>
         </q-card-section>
       </q-card-section>
@@ -23,11 +23,23 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { login } from "src/functions/firebase-auth";
 
 export default defineComponent({
   setup() {
+    const email = ref('')
+    const password = ref('')
 
+    const handleLogin = () => {
+      login(email.value, password.value)
+    }
+
+    return {
+      handleLogin,
+      email,
+      password
+    }
   }
 })
 </script>

@@ -14,5 +14,12 @@ export default boot (({ router }) => {
         query: { redirect: to.fullPath }
       }
     }
+
+    if (to.meta.guest && user) {
+      console.log('already logged in')
+      return {
+        path: '/'
+      }
+    }
   })
 })

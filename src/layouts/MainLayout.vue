@@ -25,9 +25,10 @@
           M-Health
         </q-toolbar-title>
         <q-space />
-        <q-btn flat round to="/login">
+        <q-btn flat round v-if="isLoggedIn" @click="confirmLogout">
           <q-icon name="bi-box-arrow-right" />
         </q-btn>
+        <q-btn v-else flat label="Login" to="/login"></q-btn>
       </q-toolbar>
     </q-header>
 
@@ -96,7 +97,12 @@ const linksList2 = [
   },
 ];
 
-import { defineComponent, ref } from "vue";
+import {defineComponent, onMounted, ref} from "vue";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import {useRouter} from "vue-router";
+import {Dialog} from "quasar";
+
+const auth = getAuth();
 
 export default defineComponent({
   name: "MainLayout",
@@ -107,13 +113,42 @@ export default defineComponent({
 
   setup() {
     const leftDrawerOpen = ref(false);
+    const isLoggedIn = ref(false)
+    const router = useRouter()
+
+    onMounted(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // redirect to login
+          console.log('detected auth state change')
+          isLoggedIn.value = true
+          router.push('/')
+        } else {
+          isLoggedIn.value = false
+          router.push('/login')
+        }
+      })
+    })
+
+    const confirmLogout = () => {
+      Dialog.create({
+        message: 'Are you sure you want to logout?',
+        cancel: true
+      }).onOk(() => {
+        signOut(auth).then(() => {
+          console.log('successfully logged out')
+        })
+      })
+    }
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
-      }
+      },
+      isLoggedIn,
+      confirmLogout
     };
   },
 });
