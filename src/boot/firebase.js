@@ -5,13 +5,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhvzrnVIVO7Cw76EnAuboMytMsmxxp8tc",
-  authDomain: "m-health-v2.firebaseapp.com",
-  projectId: "m-health-v2",
-  storageBucket: "m-health-v2.appspot.com",
-  messagingSenderId: "735249998972",
-  appId: "1:735249998972:web:3aca95344aaf800f0195f9",
-  measurementId: "G-D8ZHV2008E"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_MESSAGING_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
