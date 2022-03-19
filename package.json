@@ -2,7 +2,7 @@
   "name": "m-health",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "M-Health",
   "author": "Mark Lester Bolotaolo <mlab817@gmail.com>",
   "private": true,
   "scripts": {

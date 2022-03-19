@@ -5,7 +5,7 @@
         <div class="text-h6">Registered Patients</div>
       </q-card-section>
       <q-card-section>
-        <q-table :rows="filteredPatients" :columns="columns" :loading="loading">
+        <q-table wrap-cells :rows="filteredPatients" :columns="columns" :loading="loading">
           <template #top-right>
             <q-input outlined dense v-model="search" placeholder="Search patients...">
               <template #append>
@@ -41,27 +41,32 @@ export default defineComponent({
       {
         name: 'name',
         label: 'Name',
-        field: row => `${row.lastName}, ${row.firstName} ${row.middleName}`
+        field: row => `${row.lastName}, ${row.firstName} ${row.middleName}`,
+        sortable: true
       },
       {
         name: 'age',
         label: 'Age',
-        field: 'age'
+        field: 'age',
+        sortable: true
       },
       {
         name: 'contactNumber',
         label: 'Contact No.',
-        field: 'contactNumber'
+        field: 'contactNumber',
+        sortable: true
       },
       {
         name: 'email',
         label: 'Email',
-        field: 'email'
+        field: 'email',
+        sortable: true
       },
       {
         name: 'address',
         label: 'Address',
-        field: 'address'
+        field: 'address',
+        sortable: true
       },
       {
         name: 'action',
